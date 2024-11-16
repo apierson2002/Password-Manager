@@ -1,7 +1,7 @@
 #ifndef USER_LIST_H
 #define USER_LIST_H
 
-#include <forward_list> 
+#include <vector> 
 #include <string>
 
 #include "User.h"
@@ -12,11 +12,13 @@
 class userList::public User
 {
 	private:
-		std::forward_list<User> uList;
-	public:
-		userList() = delete; // don't have parameterless constructor
-		userList(char**);
-		
+		std::vector<string> uList;
+		bool addUser(int, User, userType); /* Not sure what the NULL parameter 
+						      is there for or how I'd go about
+						      implementing it */
+		bool deleteUser();
+		bool getUser();
+		bool searchUser();
 		
 			
 };
