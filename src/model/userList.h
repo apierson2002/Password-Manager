@@ -17,8 +17,8 @@ class userList::public User
 						      is there for or how I'd go about
 						      implementing it */
 		bool deleteUser();
-		bool getUser();
-		bool searchUser();
+		bool getUser(const User&);
+		bool searchUser(const User&);
 		
 			
 };
