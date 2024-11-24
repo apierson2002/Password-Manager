@@ -8,18 +8,22 @@
 #include "UserType.h"
 
 
-
+namespace User{
 class userList::public User
 {
 	private:
-		std::vector<string> uList;
-		bool addUser(int, User, userType); /* Not sure what the NULL parameter 
+		std::vector<User> uList;
+		bool getUserLogin(User, User); /* Not sure what the NULL parameter 
 						      is there for or how I'd go about
 						      implementing it */
-		bool deleteUser();
-		bool getUser(const User&);
+		std::vector<User> getUserList();
+		User getUser(const User&, int);
+		bool ADDuSER(User, User, userType, User);
+		bool editUser(User, User, userType, User);
 		bool searchUser(const User&);
+		bool deleteUser(User&);
 		
 			
 };
+}
 #endif
