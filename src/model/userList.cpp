@@ -1,7 +1,28 @@
 #include "userList.h"
 #include <algorithm>
 
-bool userList::addUser(int id, User user, userType role)
+bool userList::getUserLogin(User name, User pass)
+{
+	// check if the password entered is the same as the user's password
+	if(pass == name.getPassword())
+		return true;
+
+	return false;
+}
+
+std::vector<User> userList:: getUserList()
+{
+	return uList;
+}
+
+bool userList::editUser(User& id, User& u, userType role, User lastLogin)
+{
+	/* find the userId and based on that, edit the attributes based on what the
+	   parameters are*/
+		
+}
+
+bool userList::addUser(int id, User user, userType role, User lastLogin)
 {
 	/*
 	 * IMPORTANT NOTES
@@ -25,6 +46,14 @@ bool userList::addUser(int id, User user, userType role)
 	return true;
 }
 
+bool userList::getUser(const User& currentUser)
+{
+	currentUser.getUserID();
+	currentUser.getUsername();
+	currentUser.getType();
+}
+
+
 bool userList::deleteUser()
 {
 	// Find user by userName using std::find_if
@@ -43,10 +72,6 @@ bool userList::deleteUser()
 
 }
 
-bool userList::getUser(const User& currentUser)
-{
-	return getUser(currentUser);
-}
 
 bool userList::searchUser(const User& currentUser)
 {
