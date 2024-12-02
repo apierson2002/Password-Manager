@@ -6,24 +6,29 @@
 
 class Database {
   public:
-    database(const std::string& dbFile);
+    Database(const std::string& dbFile);
     ~Database();
 
-    bool LoginHandler(const std::string& username, const std::string& password);
-    bool RoleCheck(const std::string& role);
-    bool GetCredentialList();
-    bool GetUserList();
-    bool GetOneUser(int UserID);
+    //User
+    std::vector<std::vector<std::string>> GetUserList();
+    bool LoginHandler(const std::string& username, const std::string& password, Role r);
+    bool EditUser(int UserID, const std::string& username, const std::string& password, const Role r);
+    bool DeleteUser(int UserID, const Role r);
+    bool GetOneUser(int UserID, const Role r);
+    bool AddUser(const std::string& username, const std::string& password, const Role r);
+
+    //Credential
+    std::vector<std::vector<std::string>> GetCredentialList();
+    bool AddCredential(const std::string& username, const std::string& password, const std::string& email, const std::string& description, int userID, Role r);
+    bool DeleteCredential(int CredentialID, Role r);
     bool GetOneCredential(int CredentialID);
-    bool AddUser(const std::string& username, const std::string& password, const std::string& role);
-    bool AddCredential(const std::string& username, const std::string& password, const std::string& email, const std::string& description, int userID);
-    bool DeleteUser(int UserID);
-    bool DeleteCredential(int CredentialID);
-    bool EditUser(int UserID, const std::string& username, const std::string& password, const std::string& role);
-    bool EditCredential(int CredentialID, const std::string& username, const std::string& password, const std::string& email, const std::string& description);
+    bool EditCredential(int CredentialID, const std::string& username, const std::string& password, const std::string& email, const std::string& description, Role r);
 
   private:
-    std::string dbFileName;
+    sqlite3* dbFile;
+    bool executeQuery
+    bool executeNonQuery
 };
+
 
 #endif // DATABASE_H
