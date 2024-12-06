@@ -33,6 +33,7 @@ passMangApp::passMangApp(const WEnvironment& env) :
     setTitle(appName);
 
     // add CSS theme eventually
+    WApplication::instance()->useStyleSheet("view/styles.css");
 
     // install path handler
     internalPathChanged().connect(this, &passMangApp::onInternalPathChange);
@@ -44,7 +45,7 @@ passMangApp::passMangApp(const WEnvironment& env) :
     createNavigationContainer();
 
     auto contentContainer = std::make_unique<WContainerWidget>();
-    // contentContainer->addStyleClass("");
+    contentContainer->setStyleClass("contentContainer");
     content = contentContainer.get();
     root()->addWidget(std::move(contentContainer));
 
@@ -61,22 +62,26 @@ passMangApp::userLogin()
     assert(content != nullptr);
 
     auto loginContainer = std::make_unique<WContainerWidget>();
+    loginContainer->setStyleClass("loginContainer");
 
     // create label and username line
     loginContainer->addWidget(std::make_unique<WText>("Username: "));
     auto usernameIn = loginContainer->addWidget(std::make_unique<WLineEdit>());
+    usernameIn->addStyleClass("usernameIn");
 
     loginContainer->addWidget(std::make_unique<WBreak>());
 
     // create label and password line
     loginContainer->addWidget(std::make_unique<WText>("Password: "));
     auto passwordIn = loginContainer->addWidget(std::make_unique<WLineEdit>());
+    passwordIn->addStyleClass("passwordIn");
 
     loginContainer->addWidget(std::make_unique<WBreak>());
 
     // create login button
     auto loginButton =
         loginContainer->addWidget(std::make_unique<WPushButton>("Login"));
+    loginButton->addStyleClass("loginButton");
 
     // add container to content
     content->addWidget(std::move(loginContainer));
@@ -93,7 +98,8 @@ passMangApp::userLogin()
             showHomeScreen();
         } else {
             if (tempCount == 0) {
-                content->addWidget(std::make_unique<WText>("Invalid Login"));
+                auto errorText = content->addWidget(std::make_unique<WText>("Invalid Login"));
+		errorText->addStyleClass("errorText");
                 tempCount = tempCount + 1;
             }
         }
@@ -192,9 +198,9 @@ passMangApp::updateNavigation()
         navText += "<a href='#/add-credential'>Add Credential</a>&nbsp;&nbsp;";
     }
 
-    auto t = std::make_unique<WText>(navText);
-    t->setInternalPathEncoding(true);
-    navigation->addWidget(std::move(t));
+    auto navLink = std::make_unique<WText>(navText);
+    navLink->setInternalPathEncoding(true);
+    navigation->addWidget(std::move(navLink));
 
     // show after updated navigation (only called after login)
     navigation->show();
