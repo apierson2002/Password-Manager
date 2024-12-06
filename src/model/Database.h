@@ -1,11 +1,11 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "Credential.h"
+#include "User.h"
 #include <iostream>
 #include <sqlite3.h>
 #include <stdexcept>
-#include "User.h"
-#include "Credential.h"
 
 class Database
 {
@@ -22,15 +22,17 @@ class Database
                       const std::string& data,
                       const std::string& criteria);
     bool DeleteRecord(const std::string& table, const std::string& criteria);
-    
-	// User and credential methods to access database
+
+    // User and credential methods to access database
     bool insertUser(const passMang::User& user);
     bool updateUser(const passMang::User& user);
     bool deleteUser(int userID);
-    bool insertCredential(const passMang::Credential& credential);
-    bool updateCredential(const passMang::Credential& credential);
+    bool insertCredential(const passMang::Credential& credential,
+                          std::string userid);
+    bool updateCredential(const passMang::Credential& credential,
+                          std::string userid);
     bool deleteCredential(int credID);
-    
+
   private:
     sqlite3* database;
     bool openDB();
