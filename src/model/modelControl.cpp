@@ -56,44 +56,70 @@ main()
                 break;
             }
             // insert a credential
-            case 2 : {
-                std::string data;
-                std::cout << "Enter credential data: ";
-                std::getline(std::cin, data);
-                if (db.insertRecord("Credentials", data)) {
-                    std::cout << "Credential inserted successfully.\n";
-                } else {
-                    std::cout << "Failed to insert credential.\n";
-                }
-                break;
-            }
+			case 2: {
+			    int id;
+			    std::string name, email, username, password, description;
+			
+			    std::cout << "Enter Credential ID: ";
+			    std::cin >> id;
+			    std::cin.ignore();
+			
+			    std::cout << "Enter Credential Name: ";
+			    std::getline(std::cin, name);
+			
+			    std::cout << "Enter Email: ";
+			    std::getline(std::cin, email);
+			
+			    std::cout << "Enter Username: ";
+			    std::getline(std::cin, username);
+			
+			    std::cout << "Enter Password: ";
+			    std::getline(std::cin, password);
+			
+			    std::cout << "Enter Description: ";
+			    std::getline(std::cin, description);
+			
+			    std::string data = "'" + std::to_string(id) + "','" + name + "','" +
+			                       email + "','" + username + "','" + password + "','" +
+			                       description + "'";
+			    if (db.insertRecord("Credentials", data)) {
+			        std::cout << "Credential inserted successfully.\n";
+			    } else {
+			        std::cout << "Failed to insert credential.\n";
+			    }
+			    break;
+			}
             // update a credential
-            case 3 : {
-                std::string data, criteria;
-                std::cout
-                    << "Enter data to update (e.g., password='newPass'): ";
-                std::getline(std::cin, data);
-                std::cout << "Enter criteria (e.g., id=1): ";
-                std::getline(std::cin, criteria);
-                if (db.UpdateRecord("Credentials", data, criteria)) {
-                    std::cout << "Credential updated successfully.\n";
-                } else {
-                    std::cout << "Failed to update credential.\n";
-                }
-                break;
-            }
-            // delete a credential
-            case 4 : {
-                std::string criteria;
-                std::cout << "Enter criteria (e.g., id=1): ";
-                std::getline(std::cin, criteria);
-                if (db.DeleteRecord("Credentials", criteria)) {
-                    std::cout << "Credential deleted successfully.\n";
-                } else {
-                    std::cout << "Failed to delete credential.\n";
-                }
-                break;
-            }
+			case 3: {
+			    std::string data, criteria;
+			
+				std::cout << "Enter criteria (e.g., id=1): ";
+			    std::getline(std::cin, criteria);
+			
+			    std::cout << "Enter updated criteria value: ";
+			    std::getline(std::cin, data);
+			
+			    if (db.UpdateRecord("Credentials", data, criteria)) {
+			        std::cout << "Credential updated successfully.\n";
+			    } else {
+			        std::cout << "Failed to update credential.\n";
+			    }
+			    break;
+			}
+	        // delete a credential
+			case 4: {
+			    std::string criteria;
+			
+			    std::cout << "Enter criteria (e.g., id=1): ";
+			    std::getline(std::cin, criteria);
+			
+			    if (db.DeleteRecord("Credentials", criteria)) {
+			        std::cout << "Credential deleted successfully.\n";
+			    } else {
+			        std::cout << "Failed to delete credential.\n";
+			    }
+			    break;
+			}
             // view a Users info based of a given criteria
             case 5 : {
                 std::string criteria;

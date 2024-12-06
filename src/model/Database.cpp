@@ -154,3 +154,55 @@ Database::DeleteRecord(const std::string& table, const std::string& criteria)
     sqlite3_finalize(stmt);
     return true;
 }
+bool Database::insertUser(const passMang::User& user)
+{
+    std::string sql = "INSERT INTO Users (userID, username, password, type) VALUES (" +
+                      std::to_string(user.getUserID()) + ", '" + 
+                      user.getUsername() + "', '" + 
+                      user.getPassword() + "', '" + 
+                      user.getTypeStr() + "');";
+    return insertRecord("Users", sql);
+}
+
+bool Database::updateUser(const passMang::User& user)
+{
+    std::string sql = "username = '" + user.getUsername() +
+                      "', password = '" + user.getPassword() +
+                      "', type = '" + user.getTypeStr() + "'";
+    std::string criteria = "userID = " + std::to_string(user.getUserID());
+    return UpdateRecord("Users", sql, criteria);
+}
+
+bool Database::deleteUser(int userID)
+{
+    std::string criteria = "userID = " + std::to_string(userID);
+    return DeleteRecord("Users", criteria);
+}
+
+bool Database::insertCredential(const passMang::Credential& credential)
+{
+    std::string sql = std::to_string(credential.getCredID()) + ", '" +
+                      credential.getCredName() + "', '" +
+                      credential.getEmail() + "', '" +
+                      credential.getUsername() + "', '" +
+                      credential.getPassword() + "', '" +
+                      credential.getDescription() + "'";
+    return insertRecord("Credentials", sql);
+}
+
+bool Database::updateCredential(const passMang::Credential& credential)
+{
+    std::string sql = "credName = '" + credential.getCredName() +
+                      "', email = '" + credential.getEmail() +
+                      "', username = '" + credential.getUsername() +
+                      "', password = '" + credential.getPassword() +
+                      "', description = '" + credential.getDescription() + "'";
+    std::string criteria = "credID = " + std::to_string(credential.getCredID());
+    return UpdateRecord("Credentials", sql, criteria);
+}
+
+bool Database::deleteCredential(int credID)
+{
+    std::string criteria = "credID = " + std::to_string(credID);
+    return DeleteRecord("Credentials", criteria);
+}
