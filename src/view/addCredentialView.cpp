@@ -5,7 +5,6 @@
  * jathur,momerk  12/1/24
  */
 #include <string>
-
 #include <Wt/WApplication.h>
 #include <Wt/WPushButton.h>
 #include <Wt/WString.h>

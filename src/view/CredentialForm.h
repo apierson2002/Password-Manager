@@ -33,6 +33,7 @@ class CredentialForm : public WContainerWidget
     WLineEdit* credNameEdit;
     WPushButton* addButton;
     WPushButton* cancelButton;
+    WPushButton* editButton;
 };
 
 #endif /* CREDENTIALFORM_H */

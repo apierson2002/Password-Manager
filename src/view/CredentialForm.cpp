@@ -54,6 +54,7 @@ CredentialForm::CredentialForm()
     addButton = addWidget(std::make_unique<WPushButton>("Add"));
     addButton->setMargin(5, Side::Left | Side::Top);
     // connect "add" button in derived class
-
+    editButton = addWidget(std::make_unique<WPushButton>("Edit"));
+    editButton->setMargin(5, Side::Left | Side::Top);
     addWidget(std::make_unique<WBreak>());
 }
