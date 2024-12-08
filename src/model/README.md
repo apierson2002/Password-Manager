@@ -13,7 +13,7 @@
     - Password TEXT NOT NULL, Role TEXT, LastLogin DATETIME); 
 
 2. CREATE TABLE Credentials (CredentialID INTEGER PRIMARY KEY, CredName TEXT,
-    - CredUsername TEXT, CredPassword TEXT, CredEmail TEXT, ROLE TEXT,
+    - CredUsername TEXT, CredPassword TEXT, CredEmail TEXT,
     - CredDescription TEXT, LastUpdated DATETIME, UserID INTEGER, FOREIGN KEY
     - (UserID)REFERENCES User(USERID));
  
