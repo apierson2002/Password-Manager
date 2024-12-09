@@ -50,7 +50,7 @@ passMangApp::passMangApp(const WEnvironment& env) :
     setTitle(appName);
 
     root()->setAttributeValue(
-		    "style", "background-color: #008000; margin: 0 auto;"
+		    "style", "background-color: #522888; margin: 0 auto;"
 		    "width: 100%;");
 
     // add CSS theme eventually
@@ -65,7 +65,7 @@ passMangApp::passMangApp(const WEnvironment& env) :
     createNavigationContainer();
 
     auto contentContainer = std::make_unique<WContainerWidget>();
-    contentContainer->setAttributeValue("style", "background-color: #165B33;");
+    contentContainer->setAttributeValue("style", "background-color: #8B4AD3;");
     content = contentContainer.get();
     root()->addWidget(std::move(contentContainer));
 
@@ -84,14 +84,15 @@ passMangApp::userLogin()
     auto loginContainer = std::make_unique<WContainerWidget>();
     loginContainer->setAttributeValue(
         "style",
-        "padding: 20px; background-color: #165B33; "
+        "padding: 20px; background-color: #522888; "
         "border-radius: 5px width: 300px; margin: auto;");
 
     // create label and username line
     auto usernameText =
         loginContainer->addWidget(std::make_unique<WText>("Username: "));
     usernameText->setAttributeValue("style",
-                                    "font-weight: bold; margin: 0  auto;");
+                                    "font-weight: bold; margin: 0  auto;"
+				    "color: #DDDDDD;");
 
     auto usernameIn = loginContainer->addWidget(std::make_unique<WLineEdit>());
     usernameIn->setAttributeValue(
@@ -104,7 +105,8 @@ passMangApp::userLogin()
     auto passwordText =
         loginContainer->addWidget(std::make_unique<WText>("Password: "));
     passwordText->setAttributeValue("style",
-                                    "font-weight: bold; margin: auto;");
+                                    "font-weight: bold; margin: auto;"
+				    "color: #DDDDDD;");
 
     auto passwordIn = loginContainer->addWidget(std::make_unique<WLineEdit>());
     passwordIn->setAttributeValue(
@@ -139,7 +141,7 @@ passMangApp::userLogin()
                 auto invalidLoginText =
                     std::make_unique<WText>("Invalid Login");
                 invalidLoginText->setAttributeValue(
-                    "style", "background-color: #A50000; font-weight: bold;");
+                    "style", "background-color: #FFD700; font-weight: bold;");
                 content->addWidget(std::move(invalidLoginText));
                 invalidCount++;
             }
