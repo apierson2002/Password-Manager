@@ -393,6 +393,7 @@ passMangApp::createFooterContainer()
     footer->addWidget(std::make_unique<WBreak>());
     footer->addWidget(
         std::make_unique<WText>("Developed by Better Team of CS455 UNA"));
+    footer->setAttributeValue("style", "color: #DDDDDD;");
     root()->addWidget(std::move(footer));
 }
 
