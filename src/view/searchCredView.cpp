@@ -20,8 +20,8 @@
 
 using namespace Wt;
 
-searchCredView::searchCredView(Database& db, passMang::Role userRole) :
-    db(db), userRole(userRole)
+searchCredView::searchCredView(Database& db, passMang::Role userRole, const std::string& userID) :
+    db(db), userRole(userRole), userID(userID)
 {
     CredentialForm(false);
     addButton->setText("Search");
@@ -151,8 +151,12 @@ searchCredView::searchCred()
 
     if (isID) {
         // Search by credential ID
-        criteria = "CredentialID=" + stringId;
-        credRecord = db.retrieveRecord("Credentials", criteria);
+        if (userRole == passMang::Role::Admin)
+		criteria = "CredentialID=" + stringId;
+	else
+		criteria = "CredentialID="+ stringId + " AND UserID="+ userID;        
+
+	credRecord = db.retrieveRecord("Credentials", criteria);
 
         if (! credRecord.empty())
             isMatch = true;
@@ -160,8 +164,12 @@ searchCredView::searchCred()
 
     if (isUsername && ! isMatch) {
         // Search by username
-        criteria = "CredUsername='" + username + "'";
-        credRecord = db.retrieveRecord("Credentials", criteria);
+        if (userRole == passMang::Role::Admin)
+        	criteria = "CredUsername='" + username + "'";
+        else
+        	criteria = "CredUsername='" + username + "' AND UserID="+ userID;
+	
+	credRecord = db.retrieveRecord("Credentials", criteria);
 
         if (! credRecord.empty())
             isMatch = true;
@@ -169,8 +177,12 @@ searchCredView::searchCred()
 
     if (isEmail && ! isMatch) {
         // Search by email
-        criteria = "CredEmail='" + email + "'";
-        credRecord = db.retrieveRecord("Credentials", criteria);
+        if (userRole == passMang::Role::Admin)
+        	criteria = "CredEmail='" + email + "'";
+        else
+        	criteria = "CredEmail='" + email + "' AND UserID="+ userID;
+	
+	credRecord = db.retrieveRecord("Credentials", criteria);
 
         if (! credRecord.empty())
             isMatch = true;
@@ -178,8 +190,12 @@ searchCredView::searchCred()
 
     if (isName && ! isMatch) {
         // Search by cred name
-        criteria = "CredName='" + name + "'";
-        credRecord = db.retrieveRecord("Credentials", criteria);
+        if (userRole == passMang::Role::Admin)
+        	criteria = "CredName='" + name + "'";
+        else
+        	criteria = "CredName='" + name + "' AND UserID="+ userID;
+	
+	credRecord = db.retrieveRecord("Credentials", criteria);
 
         if (! credRecord.empty())
             isMatch = true;
@@ -187,8 +203,12 @@ searchCredView::searchCred()
 
     if (isDescrip && ! isMatch) {
         // Search by description
-        criteria = "CredDescription='" + descrip + "'";
-        credRecord = db.retrieveRecord("Credentials", criteria);
+        if (userRole == passMang::Role::Admin)
+        	criteria = "CredDescription='" + descrip + "'";
+        else
+        	criteria = "CredDescription='" + descrip + "' AND UserID="+ userID;
+
+	credRecord = db.retrieveRecord("Credentials", criteria);
 
         if (! credRecord.empty())
             isMatch = true;

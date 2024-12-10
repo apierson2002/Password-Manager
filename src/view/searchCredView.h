@@ -16,12 +16,13 @@ class searchCredView : public CredentialForm
 {
   public:
     // searchCredView() = delete;
-    searchCredView(Database& db, passMang::Role userRole);
+    searchCredView(Database& db, passMang::Role userRole, const std::string& userID);
 
   private:
     void searchCred();
     Database& db;
     passMang::Role userRole;
+    const std::string& userID;
     Wt::WGroupBox* resultBox;
     Wt::WContainerWidget* contentContainer;
 };
