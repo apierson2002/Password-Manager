@@ -16,7 +16,9 @@ class searchCredView : public CredentialForm
 {
   public:
     // searchCredView() = delete;
-    searchCredView(Database& db, passMang::Role userRole, const std::string& userID);
+    searchCredView(Database& db,
+                   passMang::Role userRole,
+                   const std::string& userID);
 
   private:
     void searchCred();
