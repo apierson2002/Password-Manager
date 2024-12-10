@@ -14,4 +14,4 @@ Decisions Made:
 - N/A
  
 Action Items:
-- N/A
+- Hash password login
