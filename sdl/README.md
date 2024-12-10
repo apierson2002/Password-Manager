@@ -23,5 +23,3 @@ For all plans include the LaTeX sources, images, and the baselined PDFs.
 
 Change request documents should contain links (issue number) to the change request issue.
 
-Test results should contain links (issue number) to any relevant issues (test failures, peer reviews, etc.) as well as the names of the testers.
-

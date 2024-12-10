@@ -1,0 +1,12 @@
+date: 11/13/2024
+
+Attendees: All
+
+Items Discussed:
+Adding setters to User class
+Adding getters and setters to credential class
+Discussed removing userList class (kinda useless because of the database class)
+
+Action Items: 
+Make tests for the model
+@Andrew and testing team

@@ -26,4 +26,5 @@
         -CredentialTest
         -UserClass
         -UserTypeClass
-
+        -Database
+        -HashClass
